@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مشاهدة المباراة — أيوب كوووره</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#0f172a;color:#fff;font-family:'Tajawal',system-ui,sans-serif;
+    overflow:hidden;direction:rtl;text-align:right;
+  }
+  /* ── شريط علوي بزر رجوع ─────────────────────────────────── */
+  .bar{
+    position:fixed;top:0;left:0;right:0;z-index:50;height:56px;
+    background:linear-gradient(135deg,#0ea5e9,#0284c7);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 20px;box-shadow:0 4px 20px rgba(0,0,0,.3);
+  }
+  .bar h1{font-size:16px;font-weight:800}
+  .bar .actions{display:flex;gap:10px;align-items:center}
+  .bar button{
+    background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);
+    color:#fff;padding:6px 16px;border-radius:8px;cursor:pointer;
+    font-family:inherit;font-weight:700;font-size:13px;transition:.2s;
+  }
+  .bar button:hover{background:rgba(255,255,255,.35)}
+  .bar .live-badge{
+    background:#ef4444;color:#fff;font-size:11px;font-weight:800;
+    padding:4px 12px;border-radius:20px;display:flex;align-items:center;gap:6px;
+    animation:pulse 2s infinite;
+  }
+  .bar .live-badge::before{
+    content:"";width:8px;height:8px;background:#fff;border-radius:50%;
+    display:inline-block;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+
+  /* ── حاوية الـ iframe ─────────────────────────────────────── */
+  .wrap{position:fixed;top:56px;left:0;right:0;bottom:0}
+  iframe{width:100%;height:100%;border:none;display:block}
+
+  /* ── شاشة التحميل ─────────────────────────────────────────── */
+  .loader{
+    position:fixed;inset:0;display:grid;place-items:center;
+    background:#0f172a;z-index:40;flex-direction:column;gap:16px;
+  }
+  .spinner{
+    width:48px;height:48px;border:4px solid rgba(14,165,233,.2);
+    border-top-color:#0ea5e9;border-radius:50%;
+    animation:spin .75s linear infinite;
+  }
+  .loader p{color:#94a3b8;font-size:14px;font-weight:700;margin-top:12px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ── رسالة خطأ ────────────────────────────────────────────── */
+  .error{
+    position:fixed;inset:0;display:none;place-items:center;
+    background:#0f172a;z-index:45;text-align:center;padding:20px;
+  }
+  .error.show{display:grid}
+  .error h2{color:#ef4444;font-size:22px;margin-bottom:10px}
+  .error p{color:#94a3b8;font-size:15px;line-height:1.7;max-width:400px}
+  .error button{
+    margin-top:20px;background:var(--brand);color:#fff;border:none;
+    padding:10px 24px;border-radius:8px;font-family:inherit;font-weight:700;
+    cursor:pointer;font-size:14px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- الشريط العلوي -->
+  <div class="bar">
+    <h1>⚽ أيوب كوووره — بث مباشر</h1>
+    <div class="actions">
+      <span class="live-badge">مباشر</span>
+      <button onclick="history.back()">🔙 رجوع للمباريات</button>
+    </div>
+  </div>
+
+  <!-- شاشة التحميل -->
+  <div class="loader" id="loader">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div class="spinner"></div>
+      <p>جاري تحميل البث…</p>
+    </div>
+  </div>
+
+  <!-- رسالة خطأ (تظهر لو البث ما اشتغل) -->
+  <div class="error" id="error">
+    <div>
+      <h2>⚠️ تعذر تحميل البث</h2>
+      <p>قد يكون البث غير متاح حالياً أو هناك مشكلة مؤقتة في المصدر. يمكنك المحاولة مرة أخرى أو العودة لقائمة المباريات.</p>
+      <button onclick="location.reload()">🔄 إعادة المحاولة</button>
+      <button onclick="history.back()" style="background:#334155;margin-right:10px">🔙 رجوع</button>
+    </div>
+  </div>
+
+  <!-- الـ iframe: sandbox يمنع النوافذ المنبثقة (popups) -->
+  <div class="wrap">
+    <iframe 
+      id="player" 
+      sandbox="allow-scripts allow-same-origin allow-presentation allow-forms" 
+      referrerpolicy="no-referrer" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    (function(){
+      // ── قراءة معرف المباراة من الرابط ───────────────────────
+      var p = new URLSearchParams(location.search);
+      var id  = p.get('id')  || '';
+      var lang = p.get('lang') || 'ar';
+
+      // ── رابط البث الأصلي (من الكود المُرفق) ─────────────────
+      var src = 'https://xyzhes-goal-eu.smartagro.mov/?m=' 
+                + encodeURIComponent(id) 
+                + '&lang=' + encodeURIComponent(lang);
+
+      var iframe = document.getElementById('player');
+      iframe.src = src;
+
+      // ── إخفاء الـ loader بعد 4 ثواني ───────────────────────
+      setTimeout(function(){
+        document.getElementById('loader').style.display = 'none';
+      }, 4000);
+
+      // ── لو الـ iframe فشل في التحميل (احتياطي) ────────────
+      iframe.onerror = function(){
+        document.getElementById('error').classList.add('show');
+      };
+    })();
+  </script>
+
+</body>
+</html>
