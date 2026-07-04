@@ -3,487 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  بيانات الموقع الأساسية (SEO) — اسم الموقع: أيوب كوووره    -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
 <title>أيوب كوووره — بث مباشر للمباريات ونتائج اللحظة</title>
 <meta name="description" content="أيوب كوووره: مباريات اليوم بث مباشر، نتائج لحظية، ترتيب الفرق، أخبار كرة القدم. الدوري السعودي، دوري أبطال أوروبا، الدوري الإنجليزي والمزيد.">
-<meta name="keywords" content="أيوب كوووره, بث مباشر, مباريات اليوم, كورة اون لاين, نتائج المباريات, الدوري السعودي, دوري أبطال أوروبا, الدوري الإنجليزي, كوووره">
-<meta name="author" content="أيوب كوووره">
-<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
 <meta name="theme-color" content="#0ea5e9">
-
-<!-- ─── روابط الـ API المأخوذة من الكود الأصلي ───────────────────── -->
-<!-- 
-  API المباريات:  https://ws.kora-api.space/
-  صور الفرق:      https://cdn.kora-api.space/uploads/team/
-  صور الدوريات:   https://cdn.kora-api.space/uploads/league/
-  رابط البث:      https://xyzhes-goal-eu.smartagro.mov/
-  هذه الروابط أساسية لتشغيل الموقع ويجب عدم تغييرها.
--->
-
 <link rel="canonical" href="https://ayoub-kooora.vercel.app/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚽%3C/text%3E%3C/svg%3E">
 
-<!-- ─── خط عربي: Tajawal ─────────────────────────────────────────── -->
+<!-- خط Tajawal -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-<!-- ─── Schema.org للـ SEO ─────────────────────────────────────────── -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@graph":[
-    {"@type":"WebSite","@id":"https://ayoub-kooora.vercel.app/#website","url":"https://ayoub-kooora.vercel.app/","name":"أيوب كوووره","description":"بث مباشر للمباريات ونتائج لحظية وترتيب الفرق","inLanguage":"ar-SA","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://ayoub-kooora.vercel.app/?q={search_term_string}"},"query-input":"required name=search_term_string"}},
-    {"@type":"Organization","@id":"https://ayoub-kooora.vercel.app/#organization","name":"أيوب كوووره","url":"https://ayoub-kooora.vercel.app/","logo":{"@type":"ImageObject","url":"https://ayoub-kooora.vercel.app/logo.png","width":512,"height":512}}
-  ]
-}
-</script>
-
 <style>
-/* ═══════════════════════════════════════════════════════════════ */
-/*  المتغيرات (Design Tokens) — نظام الألوان والتباعد            */
-/* ═══════════════════════════════════════════════════════════════ */
+/* ── المتغيرات ─────────────────────────────────────────────── */
 :root{
-  --brand:#0ea5e9;          /* الأزرق السماوي — لون الموقع */
-  --brand-d:#0284c7;        /* الأزرق الداكن */
-  --brand-l:#e0f2fe;        /* الأزرق الفاتح جداً */
-  --brand-xl:#f0f9ff;       /* خلفية خفيفة */
-  --accent:#f59e0b;         /* اللون التبايني (برتقالي) للأحداث المهمة */
-  
-  --bg:#f8fafc;             /* خلفية الصفحة */
-  --bg2:#f1f5f9;            /* خلفية ثانوية */
-  --surface:#ffffff;        /* لون البطاقات */
-  --surface2:#f8fafc;       /* خلفية داخل البطاقات */
-  
-  --border:#e2e8f0;         /* لون الحدود */
-  --border-b:rgba(14,165,233,.25); /* حدود باللون الأزرق */
-  
-  --text:#0f172a;           /* النص الرئيسي */
-  --muted:#64748b;          /* النص الثانوي */
-  --dim:#94a3b8;            /* النص الخافت */
-  
-  --radius:14px;            /* زوايا البطاقات */
-  --radius-lg:20px;         /* زوايا كبيرة */
-  
+  --brand:#0ea5e9;--brand-d:#0284c7;--brand-l:#e0f2fe;--brand-xl:#f0f9ff;--accent:#f59e0b;
+  --bg:#f8fafc;--bg2:#f1f5f9;--surface:#ffffff;--surface2:#f8fafc;
+  --border:#e2e8f0;--border-b:rgba(14,165,233,.25);
+  --text:#0f172a;--muted:#64748b;--dim:#94a3b8;
+  --radius:14px;--radius-lg:20px;
   --shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);
   --shadow-md:0 4px 12px rgba(0,0,0,.08),0 8px 32px rgba(0,0,0,.06);
   --shadow-b:0 4px 20px rgba(14,165,233,.20);
-  
   --grad:linear-gradient(135deg,#0ea5e9,#0284c7);
-  --grad-soft:linear-gradient(135deg,#e0f2fe,#f0f9ff);
 }
-
-/* ═══════════════════════════════════════════════════════════════ */
-/*  إعدادات عامة وإعادة ضبط (Reset)                             */
-/* ═══════════════════════════════════════════════════════════════ */
 *,::before,::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{font-size:16px;scroll-behavior:smooth}
 body{
-  font-family:'Tajawal',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-  min-height:100svh;
-  overflow-x:hidden;
-  direction:rtl;           /* دعم اللغة العربية */
-  text-align:right;        /* محاذاة النص لليمين */
+  font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.7;min-height:100svh;overflow-x:hidden;direction:rtl;text-align:right;
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--brand);color:#fff}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  شريط التنقل العلوي (Navbar) — ثابت أثناء التمرير             */
-/* ═══════════════════════════════════════════════════════════════ */
+/* ── شريط التنقل ───────────────────────────────────────────── */
 .nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-bottom:1px solid var(--border);
-  padding:0 24px;height:64px;
-  display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 1px 0 var(--border);
+  position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--border);padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 var(--border);
 }
-.nav-brand{
-  display:flex;align-items:center;gap:10px;
-  color:var(--text);font-weight:900;font-size:22px;letter-spacing:-.5px;
-}
-.nav-logo{
-  width:38px;height:38px;
-  background:var(--grad);border-radius:10px;
-  display:grid;place-items:center;
-  font-size:20px;font-weight:900;color:#fff;
-  box-shadow:var(--shadow-b);
-}
+.nav-brand{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:900;font-size:22px}
+.nav-logo{width:38px;height:38px;background:var(--grad);border-radius:10px;display:grid;place-items:center;font-size:20px;font-weight:900;color:#fff;box-shadow:var(--shadow-b)}
 .nav-links{display:flex;gap:8px;align-items:center}
-.nav-links a{
-  color:var(--muted);font-size:14px;font-weight:700;
-  padding:7px 14px;border-radius:8px;transition:all .15s;
-}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:700;padding:7px 14px;border-radius:8px;transition:.15s}
 .nav-links a:hover{color:var(--brand);background:var(--brand-l)}
-.nav-badge{
-  background:var(--brand);color:#fff;font-size:11px;font-weight:800;
-  padding:5px 12px;border-radius:6px;letter-spacing:.5px;
-}
-/* زر الوضع المظلم/الفاتح */
-.theme-toggle{
-  width:38px;height:38px;border-radius:10px;
-  border:1px solid var(--border);background:var(--surface);
-  display:grid;place-items:center;cursor:pointer;
-  font-size:18px;transition:all .2s;margin-right:8px;
-}
+.nav-badge{background:var(--brand);color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:6px}
+.theme-toggle{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:grid;place-items:center;cursor:pointer;font-size:18px;transition:.2s;margin-right:8px}
 .theme-toggle:hover{background:var(--brand-l);border-color:var(--brand)}
-
 @media(max-width:680px){.nav-links{display:none}}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  قسم الهيدر (Hero) — الترحيب والإحصائيات الرئيسية              */
-/* ═══════════════════════════════════════════════════════════════ */
+/* ── Hero ───────────────────────────────────────────────────── */
 .hero{
   background:linear-gradient(160deg,#fff 0%,var(--brand-xl) 60%,var(--brand-l) 100%);
-  border-bottom:1px solid var(--border-b);
-  padding:60px 24px 50px;text-align:center;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border-b);padding:60px 24px 50px;text-align:center;position:relative;overflow:hidden;
 }
 .hero::before{
   content:"";position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-  pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%230ea5e9' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none;
 }
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#fff;border:1px solid var(--border-b);
-  color:var(--brand);font-size:12px;font-weight:800;
-  padding:6px 16px;border-radius:20px;letter-spacing:.5px;
-  margin-bottom:20px;box-shadow:var(--shadow-b);
+  display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border-b);
+  color:var(--brand);font-size:12px;font-weight:800;padding:6px 16px;border-radius:20px;margin-bottom:20px;box-shadow:var(--shadow-b);
 }
 .hero-dot{width:8px;height:8px;background:var(--brand);border-radius:50%;animation:blink 1.2s infinite}
-.hero h1{
-  font-size:clamp(32px,6vw,56px);font-weight:900;line-height:1.1;
-  margin-bottom:18px;letter-spacing:-1px;color:var(--text);
-}
+.hero h1{font-size:clamp(32px,6vw,56px);font-weight:900;line-height:1.1;margin-bottom:18px}
 .hero h1 em{font-style:normal;color:var(--brand)}
-.hero .lead{
-  font-size:clamp(16px,2.2vw,20px);color:var(--muted);
-  max-width:680px;margin:0 auto 36px;line-height:1.8;
-}
-/* إحصائيات سريعة في الهيدر */
+.hero .lead{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:680px;margin:0 auto 36px;line-height:1.8}
 .hero-stats{
-  display:flex;gap:0;justify-content:center;flex-wrap:wrap;
-  background:#fff;border:1px solid var(--border);
-  border-radius:var(--radius-lg);box-shadow:var(--shadow);
-  max-width:560px;margin:0 auto;overflow:hidden;
+  display:flex;gap:0;justify-content:center;flex-wrap:wrap;background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow);max-width:560px;margin:0 auto;overflow:hidden;
 }
-.hero-stat{
-  flex:1;min-width:110px;padding:18px 14px;text-align:center;
-  border-left:1px solid var(--border);  /* RTL: border-left بدلاً من right */
-}
+.hero-stat{flex:1;min-width:110px;padding:18px 14px;text-align:center;border-left:1px solid var(--border)}
 .hero-stat:last-child{border-left:none}
 .hero-stat strong{display:block;font-size:clamp(20px,3vw,26px);font-weight:900;color:var(--brand)}
-.hero-stat span{font-size:12px;color:var(--muted);letter-spacing:.3px}
+.hero-stat span{font-size:12px;color:var(--muted)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  الحاوية الرئيسية (Wrapper) وعناوين الأقسام                   */
-/* ═══════════════════════════════════════════════════════════════ */
+/* ── الحاوية ────────────────────────────────────────────────── */
 .wrap{max-width:1240px;margin:0 auto;padding:0 20px}
-.section-head{
-  display:flex;align-items:center;justify-content:space-between;
-  margin:40px 0 18px;flex-wrap:wrap;gap:12px;
-}
-.section-head h2{
-  font-size:clamp(20px,2.5vw,24px);font-weight:900;letter-spacing:-.4px;
-  display:flex;align-items:center;gap:12px;color:var(--text);
-}
-/* شريط أزرق بجانب العنوان */
-.section-head h2::before{
-  content:"";width:5px;height:26px;background:var(--grad);border-radius:3px;flex-shrink:0;
-}
-.section-head .meta{
-  font-size:13px;color:var(--muted);background:var(--bg2);
-  padding:5px 12px;border-radius:8px;border:1px solid var(--border);
-}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:40px 0 18px;flex-wrap:wrap;gap:12px}
+.section-head h2{font-size:clamp(20px,2.5vw,24px);font-weight:900;display:flex;align-items:center;gap:12px}
+.section-head h2::before{content:"";width:5px;height:26px;background:var(--grad);border-radius:3px;flex-shrink:0}
+.section-head .meta{font-size:13px;color:var(--muted);background:var(--bg2);padding:5px 12px;border-radius:8px;border:1px solid var(--border)}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  شبكة البطاقات (Match Cards) — بطاقة المباراة الواحدة         */
-/* ═══════════════════════════════════════════════════════════════ */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-  gap:16px;
-}
+/* ── بطاقات المباريات ───────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
 .card{
-  background:var(--surface);border-radius:var(--radius);
-  border:1px solid var(--border);overflow:hidden;
-  transition:all .25s cubic-bezier(.4,0,.2,1);
-  display:block;position:relative;box-shadow:var(--shadow);
+  background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);
+  overflow:hidden;transition:all .25s cubic-bezier(.4,0,.2,1);display:block;position:relative;box-shadow:var(--shadow);
 }
-.card:hover{
-  transform:translateY(-4px);border-color:var(--border-b);
-  box-shadow:var(--shadow-b);
-}
+.card:hover{transform:translateY(-4px);border-color:var(--border-b);box-shadow:var(--shadow-b)}
 .card.finished{opacity:.65}
-/* رأس البطاقة: اسم الدوري + حالة المباراة */
-.card-head{
-  background:var(--bg2);border-bottom:1px solid var(--border);
-  padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;
-}
+.card-head{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .league-row{display:flex;align-items:center;gap:8px;min-width:0}
 .league-img{width:22px;height:22px;object-fit:contain;flex-shrink:0}
-.league-name{
-  font-size:12px;font-weight:700;color:var(--muted);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  letter-spacing:.2px;
-}
-/* الشارات (Badges) */
-.badge{
-  font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;
-  white-space:nowrap;flex-shrink:0;letter-spacing:.4px;
-}
-.badge-live{
-  background:var(--brand);color:#fff;
-  display:flex;align-items:center;gap:6px;
-}
-.badge-live .dot{display:inline-block;width:6px;height:6px;background:#fff;border-radius:50%;animation:blink 1.2s infinite}
+.league-name{font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.badge-live{background:var(--brand);color:#fff;display:flex;align-items:center;gap:6px}
+.badge-live .dot{width:6px;height:6px;background:#fff;border-radius:50%;animation:blink 1.2s infinite}
 .badge-upcoming{background:var(--brand-l);color:var(--brand-d);border:1px solid var(--border-b)}
 .badge-finished{background:var(--bg2);color:var(--dim);border:1px solid var(--border)}
-/* جسم البطاقة: الفريقين والنتيجة */
 .card-body{padding:20px 16px}
-.teams{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;  /* RTL: الفريق الأول يمين، الثاني يسار */
-  align-items:center;gap:10px;
-}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
 .team{display:flex;flex-direction:column;align-items:center;gap:8px}
 .team-logo{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.1))}
-.team-name{font-size:13px;font-weight:700;text-align:center;line-height:1.4;color:var(--text)}
+.team-name{font-size:13px;font-weight:700;text-align:center;line-height:1.4}
 .center-col{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:60px}
-.score{font-size:26px;font-weight:900;color:var(--text);letter-spacing:2px;font-variant-numeric:tabular-nums}
-.kick-time{font-size:15px;font-weight:900;color:var(--brand);white-space:nowrap;font-variant-numeric:tabular-nums}
+.score{font-size:26px;font-weight:900;letter-spacing:2px;font-variant-numeric:tabular-nums}
+.kick-time{font-size:15px;font-weight:900;color:var(--brand);white-space:nowrap}
 .kick-label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
-/* عداد تنازلي للمباريات القادمة */
-.countdown{
-  display:flex;gap:6px;align-items:center;justify-content:center;margin-top:4px;
-}
-.countdown-item{
-  background:var(--brand-l);border:1px solid var(--border-b);
-  border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--brand-d);
-  min-width:32px;text-align:center;
-}
+.countdown{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:4px}
+.countdown-item{background:var(--brand-l);border:1px solid var(--border-b);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--brand-d);min-width:32px;text-align:center}
 .countdown-sep{color:var(--dim);font-weight:700;font-size:14px}
-/* تذييل البطاقة: زر المشاهدة */
 .card-foot{
-  border-top:1px solid var(--border-b);
-  padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:8px;
-  background:var(--grad);color:#fff;font-size:13px;font-weight:800;
-  letter-spacing:.5px;transition:all .2s;
+  border-top:1px solid var(--border-b);padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--grad);color:#fff;font-size:13px;font-weight:800;letter-spacing:.5px;transition:.2s;
 }
 .card:hover .card-foot{background:linear-gradient(135deg,#0284c7,#0369a1)}
-/* بطاقة النتيجة النهائية */
-.final-score{
-  font-size:13px;color:var(--muted);background:var(--bg2);
-  padding:3px 10px;border-radius:6px;margin-top:4px;
-}
+.final-score{font-size:13px;color:var(--muted);background:var(--bg2);padding:3px 10px;border-radius:6px;margin-top:4px}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  حالات التحميل والخطأ (Loading & Error States)                 */
-/* ═══════════════════════════════════════════════════════════════ */
+/* ── حالات التحميل ──────────────────────────────────────────── */
 .state{text-align:center;padding:70px 20px;color:var(--muted)}
 .state-icon{font-size:52px;margin-bottom:16px;opacity:.5}
 .state h3{font-size:19px;font-weight:800;margin-bottom:8px;color:var(--text)}
 .state p{font-size:15px}
-.spinner{
-  width:48px;height:48px;border:4px solid var(--border-b);
-  border-top-color:var(--brand);border-radius:50%;
-  animation:spin .75s linear infinite;margin:0 auto 16px;
-}
+.spinner{width:48px;height:48px;border:4px solid var(--border-b);border-top-color:var(--brand);border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  مميزات الموقع (Features Grid) — لماذا أيوب كوووره؟          */
-/* ═══════════════════════════════════════════════════════════════ */
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:14px;margin:6px 0 24px;
-}
-.feature{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:24px;
-  display:flex;gap:16px;align-items:flex-start;
-  transition:all .2s;box-shadow:var(--shadow);
-}
+/* ── مميزات ─────────────────────────────────────────────────── */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:6px 0 24px}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start;transition:.2s;box-shadow:var(--shadow)}
 .feature:hover{border-color:var(--border-b);box-shadow:var(--shadow-b);transform:translateY(-2px)}
-.feature-icon{
-  width:46px;height:46px;background:var(--brand-l);
-  border:1px solid var(--border-b);border-radius:12px;
-  display:grid;place-items:center;flex-shrink:0;font-size:22px;
-}
-.feature h3{font-size:15px;font-weight:800;color:var(--text);margin-bottom:5px}
+.feature-icon{width:46px;height:46px;background:var(--brand-l);border:1px solid var(--border-b);border-radius:12px;display:grid;place-items:center;flex-shrink:0;font-size:22px}
+.feature h3{font-size:15px;font-weight:800;margin-bottom:5px}
 .feature p{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  أخبار عاجلة (Ticker) — شريط أخبار يتحرك                      */
-/* ═══════════════════════════════════════════════════════════════ */
-.news-ticker{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:14px 20px;margin:20px 0;
-  display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);
-  overflow:hidden;position:relative;
-}
-.news-label{
-  background:var(--accent);color:#fff;font-size:12px;font-weight:800;
-  padding:5px 12px;border-radius:6px;flex-shrink:0;white-space:nowrap;
-}
-.news-track{
-  flex:1;overflow:hidden;position:relative;
-  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
-}
-.news-list{
-  display:flex;gap:40px;animation:scrollNews 25s linear infinite;
-  white-space:nowrap;font-size:14px;color:var(--text);font-weight:600;
-}
+/* ── شريط الأخبار ───────────────────────────────────────────── */
+.news-ticker{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 20px;margin:20px 0;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+.news-label{background:var(--accent);color:#fff;font-size:12px;font-weight:800;padding:5px 12px;border-radius:6px;flex-shrink:0;white-space:nowrap}
+.news-track{flex:1;overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.news-list{display:flex;gap:40px;animation:scrollNews 25s linear infinite;white-space:nowrap;font-size:14px;font-weight:600}
 .news-list:hover{animation-play-state:paused}
 .news-item{display:flex;align-items:center;gap:8px}
 .news-item::before{content:"•";color:var(--brand);font-size:20px;line-height:0}
+@keyframes scrollNews{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  جدول ترتيب الفرق (Standings Table) — ميزة إضافية            */
-/* ═══════════════════════════════════════════════════════════════ */
-.standings-wrap{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);
-  margin:16px 0;
-}
-.standings-header{
-  background:var(--grad);color:#fff;padding:14px 20px;
-  font-size:16px;font-weight:800;display:flex;align-items:center;gap:10px;
-}
+/* ── ترتيب الدوريات ─────────────────────────────────────────── */
+.standings-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);margin:16px 0}
+.standings-header{background:var(--grad);color:#fff;padding:14px 20px;font-size:16px;font-weight:800;display:flex;align-items:center;gap:10px}
 .standings-table{width:100%;border-collapse:collapse;font-size:14px}
-.standings-table th{
-  background:var(--bg2);color:var(--muted);font-size:12px;font-weight:700;
-  padding:12px 16px;text-align:right;border-bottom:1px solid var(--border);
-}
-.standings-table td{
-  padding:12px 16px;border-bottom:1px solid var(--border);
-  color:var(--text);font-weight:600;
-}
+.standings-table th{background:var(--bg2);color:var(--muted);font-size:12px;font-weight:700;padding:12px 16px;text-align:right;border-bottom:1px solid var(--border)}
+.standings-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text);font-weight:600}
 .standings-table tr:last-child td{border-bottom:none}
 .standings-table tr:hover td{background:var(--brand-xl)}
-.standings-rank{
-  width:32px;height:32px;border-radius:8px;
-  display:grid;place-items:center;font-weight:900;font-size:13px;
-  background:var(--bg2);color:var(--muted);
-}
+.standings-rank{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-weight:900;font-size:13px;background:var(--bg2);color:var(--muted)}
 .standings-rank.top3{background:var(--grad);color:#fff}
 .standings-team{display:flex;align-items:center;gap:10px}
-.standings-team img{width:24px;height:24px;object-fit:contain}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  قسم التعليمات (How it works) — خطوات الاستخدام               */
-/* ═══════════════════════════════════════════════════════════════ */
-.steps{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:16px;margin:18px 0;
-}
-.step{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius-lg);padding:28px 22px;
-  position:relative;overflow:hidden;box-shadow:var(--shadow);
-  transition:all .2s;
-}
+/* ── خطوات ──────────────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:18px 0}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 22px;position:relative;overflow:hidden;box-shadow:var(--shadow);transition:.2s}
 .step:hover{border-color:var(--border-b);box-shadow:var(--shadow-b)}
-.step-bg-num{
-  position:absolute;top:14px;left:16px;      /* RTL: left بدلاً من right */
-  font-size:56px;font-weight:900;color:rgba(14,165,233,.06);line-height:1;pointer-events:none;
-}
-.step-num{
-  width:38px;height:38px;background:var(--grad);border-radius:50%;
-  display:grid;place-items:center;font-size:16px;font-weight:900;color:#fff;
-  margin-bottom:14px;box-shadow:var(--shadow-b);
-}
-.step h3{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px}
+.step-bg-num{position:absolute;top:14px;left:16px;font-size:56px;font-weight:900;color:rgba(14,165,233,.06);pointer-events:none}
+.step-num{width:38px;height:38px;background:var(--grad);border-radius:50%;display:grid;place-items:center;font-size:16px;font-weight:900;color:#fff;margin-bottom:14px;box-shadow:var(--shadow-b)}
+.step h3{font-size:16px;font-weight:800;margin-bottom:6px}
 .step p{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  الأسئلة الشائعة (FAQ) — accordion                            */
-/* ═══════════════════════════════════════════════════════════════ */
-.faq-wrap{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);
-  margin:16px 0;
-}
+/* ── FAQ ─────────────────────────────────────────────────────── */
+.faq-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);margin:16px 0}
 .faq-item{border-bottom:1px solid var(--border)}
 .faq-item:last-child{border-bottom:none}
-.faq-item summary{
-  cursor:pointer;font-size:15px;font-weight:700;color:var(--text);
-  padding:18px 22px;list-style:none;
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  transition:background .15s;
-}
+.faq-item summary{cursor:pointer;font-size:15px;font-weight:700;padding:18px 22px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:background .15s}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary:hover{background:var(--brand-xl)}
-.faq-item summary::after{
-  content:"+";color:var(--brand);font-size:24px;font-weight:300;
-  transition:transform .2s;flex-shrink:0;
-}
+.faq-item summary::after{content:"+";color:var(--brand);font-size:24px;font-weight:300;transition:transform .2s;flex-shrink:0}
 .faq-item[open] summary{background:var(--brand-xl);color:var(--brand-d)}
 .faq-item[open] summary::after{transform:rotate(45deg)}
-.faq-item p{
-  font-size:14px;color:var(--muted);line-height:1.8;
-  padding:0 22px 18px;
-}
+.faq-item p{font-size:14px;color:var(--muted);line-height:1.8;padding:0 22px 18px}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  تذييل الصفحة (Footer)                                        */
-/* ═══════════════════════════════════════════════════════════════ */
-footer{
-  background:#fff;border-top:1px solid var(--border);
-  padding:50px 20px 28px;margin-top:56px;
-}
+/* ── Footer ─────────────────────────────────────────────────── */
+footer{background:#fff;border-top:1px solid var(--border);padding:50px 20px 28px;margin-top:56px}
 .footer-inner{max-width:1000px;margin:0 auto;text-align:center}
-.foot-brand{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:24px;font-weight:900;color:var(--text);margin-bottom:12px;
-}
-.foot-desc{
-  color:var(--muted);font-size:15px;max-width:600px;
-  margin:0 auto 22px;line-height:1.8;
-}
-.foot-leagues{
-  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
-  margin:0 0 20px;
-}
-.foot-league{
-  background:var(--bg2);border:1px solid var(--border);
-  color:var(--muted);font-size:12px;font-weight:600;
-  padding:5px 13px;border-radius:6px;transition:all .15s;
-}
+.foot-brand{display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:900;color:var(--text);margin-bottom:12px}
+.foot-desc{color:var(--muted);font-size:15px;max-width:600px;margin:0 auto 22px;line-height:1.8}
+.foot-leagues{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 20px}
+.foot-league{background:var(--bg2);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:5px 13px;border-radius:6px;transition:.15s}
 .foot-league:hover{background:var(--brand-l);color:var(--brand);border-color:var(--border-b)}
-.foot-links{
-  display:flex;gap:20px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:24px;
-}
+.foot-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
 .foot-links a{font-size:14px;color:var(--dim);transition:color .15s}
 .foot-links a:hover{color:var(--brand)}
 .foot-copy{color:var(--dim);font-size:13px;border-top:1px solid var(--border);padding-top:18px}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  الرسوم المتحركة (Animations)                                  */
-/* ═══════════════════════════════════════════════════════════════ */
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes scrollNews{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}  /* RTL: الاتجاه من اليمين لليسار */
-}
-
-/* ═══════════════════════════════════════════════════════════════ */
-/*  التصميم المتجاوب (Responsive) — للهواتف والشاشات الصغيرة     */
-/* ═══════════════════════════════════════════════════════════════ */
+/* ── responsive ───────────────────────────────────────────────── */
 @media(max-width:600px){
   .grid{grid-template-columns:1fr}
   .team-logo{width:44px;height:44px}
@@ -495,19 +207,10 @@ footer{
   .standings-table{font-size:13px}
   .standings-table th,.standings-table td{padding:10px 12px}
 }
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/*  الوضع المظلم (Dark Mode) — يُفعّل عبر JavaScript              */
-/* ═══════════════════════════════════════════════════════════════ */
-.dark-mode{
-  --bg:#0f172a;--bg2:#1e293b;--surface:#1e293b;--surface2:#0f172a;
-  --border:#334155;--border-b:rgba(14,165,233,.35);
-  --text:#f1f5f9;--muted:#94a3b8;--dim:#64748b;
-  --brand-l:#0c4a6e;--brand-xl:#082f49;
-}
+/* ── dark mode ──────────────────────────────────────────────── */
+.dark-mode{--bg:#0f172a;--bg2:#1e293b;--surface:#1e293b;--surface2:#0f172a;--border:#334155;--border-b:rgba(14,165,233,.35);--text:#f1f5f9;--muted:#94a3b8;--dim:#64748b;--brand-l:#0c4a6e;--brand-xl:#082f49}
 .dark-mode .hero{background:linear-gradient(160deg,#0f172a 0%,#082f49 60%,#0c4a6e 100%)}
 .dark-mode .nav{background:rgba(15,23,42,.92)}
 .dark-mode footer{background:#0f172a}
@@ -515,16 +218,16 @@ footer{
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  شريط التنقل العلوي                                           -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  شريط التنقل                                                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <nav class="nav" aria-label="التنقل الرئيسي">
-  <a href="/" class="nav-brand" aria-label="الصفحة الرئيسية">
+  <a href="/" class="nav-brand">
     <div class="nav-logo" aria-hidden="true">⚽</div>
     أيوب كوووره
   </a>
   <div style="display:flex;align-items:center">
-    <div class="nav-links" aria-label="روابط سريعة">
+    <div class="nav-links">
       <a href="#live">مباريات اليوم</a>
       <a href="#tomorrow">مباريات الغد</a>
       <a href="#standings">الترتيب</a>
@@ -535,56 +238,39 @@ footer{
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  قسم الترحيب (Hero) — إحصائيات وشعار الموقع                   -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  Hero                                                        -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <header class="hero">
-  <div class="hero-eyebrow">
-    <span class="hero-dot" aria-hidden="true"></span>
-    بث مباشر لجميع المباريات 2026
-  </div>
+  <div class="hero-eyebrow"><span class="hero-dot" aria-hidden="true"></span> بث مباشر لجميع المباريات 2026</div>
   <h1>أيوب كوووره — <em>عالم</em> الكرة في مكان واحد</h1>
   <p class="lead">مباريات اليوم والغد، نتائج لحظية، ترتيب الفرق، أخبار عاجلة، وكل ما يهم عشاق كرة القدم في موقع واحد مجاني بالكامل.</p>
-  
-  <div class="hero-stats" role="list" aria-label="إحصائيات الموقع">
-    <div class="hero-stat" role="listitem">
-      <strong id="stat-live">0</strong>
-      <span>مباراة مباشرة</span>
-    </div>
-    <div class="hero-stat" role="listitem">
-      <strong id="stat-today">0</strong>
-      <span>مباراة اليوم</span>
-    </div>
-    <div class="hero-stat" role="listitem">
-      <strong>50+</strong>
-      <span>دوري ومسابقة</span>
-    </div>
-    <div class="hero-stat" role="listitem">
-      <strong>100%</strong>
-      <span>مجاني</span>
-    </div>
+  <div class="hero-stats" role="list">
+    <div class="hero-stat" role="listitem"><strong id="stat-live">0</strong><span>مباراة مباشرة</span></div>
+    <div class="hero-stat" role="listitem"><strong id="stat-today">0</strong><span>مباراة اليوم</span></div>
+    <div class="hero-stat" role="listitem"><strong>50+</strong><span>دوري ومسابقة</span></div>
+    <div class="hero-stat" role="listitem"><strong>100%</strong><span>مجاني</span></div>
   </div>
 </header>
 
 <main>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  شريط الأخبار العاجلة (News Ticker) — ميزة إضافية            -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  شريط الأخبار العاجلة                                       -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <div class="wrap">
-  <div class="news-ticker" aria-label="أخبار عاجلة">
+  <div class="news-ticker">
     <span class="news-label">🔥 عاجل</span>
     <div class="news-track">
       <div class="news-list" id="newsList">
         <span class="news-item">مرحباً بك في أيوب كوووره — وجهتك الأولى لمتابعة المباريات</span>
         <span class="news-item">جميع المباريات تُعرض مجاناً بدون اشتراك</span>
-        <span class="news-item">تحديث فوري للنتائج والأحداث أولاً بأول</span>
+        <span class="news-item">تحديث فوري للنتائج والأهداف والبطاقات</span>
         <span class="news-item">مباريات الدوري السعودي، الإنجليزي، الإسباني، الإيطالي والألماني</span>
         <span class="news-item">دوري أبطال أوروبا 2026 — كل المباريات بجودة عالية</span>
-        <!-- تكرار النص لانسيابية الحركة -->
         <span class="news-item">مرحباً بك في أيوب كوووره — وجهتك الأولى لمتابعة المباريات</span>
         <span class="news-item">جميع المباريات تُعرض مجاناً بدون اشتراك</span>
-        <span class="news-item">تحديث فوري للنتائج والأحداث أولاً بأول</span>
+        <span class="news-item">تحديث فوري للنتائج والأهداف والبطاقات</span>
         <span class="news-item">مباريات الدوري السعودي، الإنجليزي، الإسباني، الإيطالي والألماني</span>
         <span class="news-item">دوري أبطال أوروبا 2026 — كل المباريات بجودة عالية</span>
       </div>
@@ -592,69 +278,30 @@ footer{
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  قسم مميزات الموقع (Features) — لماذا نحن؟                   -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  مميزات الموقع                                               -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <div class="wrap">
-  <div class="section-head">
-    <h2>لماذا أيوب كوووره؟</h2>
-  </div>
+  <div class="section-head"><h2>لماذا أيوب كوووره؟</h2></div>
   <div class="feature-grid">
-    <div class="feature">
-      <div class="feature-icon" aria-hidden="true">📺</div>
-      <div>
-        <h3>بث مباشر مجاني</h3>
-        <p>شاهد جميع المباريات بدون اشتراك وبدون تسجيل. جودة عالية وثبات في البث طوال المباراة.</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon" aria-hidden="true">⚡</div>
-      <div>
-        <h3>نتائج لحظية</h3>
-        <p>تحديث فوري للنتائج والأهداف والبطاقات. لا فواصل، لا تأخير — كل شيء يصلك فور حدوثه.</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon" aria-hidden="true">🏆</div>
-      <div>
-        <h3>50+ دوري ومسابقة</h3>
-        <p>من الدوري السعودي إلى دوري أبطال أوروبا، الدوريات الخمسة الكبرى، كأس العالم 2026 والمزيد.</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon" aria-hidden="true">📱</div>
-      <div>
-        <h3>يعمل على جميع الأجهزة</h3>
-        <p>تصميم متجاوب يعمل بكفاءة على الهاتف، التابلت، والكمبيوتر بدون تطبيقات.</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon" aria-hidden="true">🔔</div>
-      <div>
-        <h3>تنبيهات المباريات</h3>
-        <p>عداد تنازلي دقيق لكل مباراة قادمة. لا تفوت أي مباراة مهمة بعد اليوم.</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon" aria-hidden="true">🌙</div>
-      <div>
-        <h3>وضع ليلي مريح</h3>
-        <p>تبديل فوري بين الوضع النهاري والليلي لراحة عينيك أثناء المتابعة الليلية.</p>
-      </div>
-    </div>
+    <div class="feature"><div class="feature-icon">📺</div><div><h3>بث مباشر مجاني</h3><p>شاهد جميع المباريات بدون اشتراك وبدون تسجيل. جودة عالية وثبات في البث.</p></div></div>
+    <div class="feature"><div class="feature-icon">⚡</div><div><h3>نتائج لحظية</h3><p>تحديث فوري للنتائج والأهداف والبطاقات. لا فواصل، لا تأخير.</p></div></div>
+    <div class="feature"><div class="feature-icon">🏆</div><div><h3>50+ دوري ومسابقة</h3><p>من الدوري السعودي إلى دوري أبطال أوروبا، الدوريات الخمسة الكبرى والمزيد.</p></div></div>
+    <div class="feature"><div class="feature-icon">📱</div><div><h3>يعمل على جميع الأجهزة</h3><p>تصميم متجاوب يعمل على الهاتف، التابلت، والكمبيوتر بدون تطبيقات.</p></div></div>
+    <div class="feature"><div class="feature-icon">🔔</div><div><h3>تنبيهات المباريات</h3><p>عداد تنازلي دقيق لكل مباراة قادمة. لا تفوت أي مباراة مهمة.</p></div></div>
+    <div class="feature"><div class="feature-icon">🌙</div><div><h3>وضع ليلي مريح</h3><p>تبديل فوري بين الوضع النهاري والليلي لراحة عينيك.</p></div></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  قسم مباريات اليوم (Live Matches) — يُجلب من API              -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  مباريات اليوم                                               -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <section class="wrap" id="live" aria-labelledby="live-heading">
   <div class="section-head">
     <h2 id="live-heading">مباريات اليوم — <span id="todayDate"></span></h2>
     <span class="meta">تحديث تلقائي · جميع الأوقات بتوقيتك المحلي</span>
   </div>
-
-  <div id="loading" class="state" role="status" aria-live="polite">
+  <div id="loading" class="state" role="status">
     <div class="spinner" aria-hidden="true"></div>
     <h3>جاري تحميل مباريات اليوم…</h3>
     <p>نستعرض جدول المباريات من أيوب كوووره</p>
@@ -664,12 +311,12 @@ footer{
     <h3>تعذر تحميل المباريات</h3>
     <p>يرجى تحديث الصفحة أو المحاولة لاحقاً.</p>
   </div>
-  <div id="grid" class="grid" style="display:none" aria-label="مباريات كرة القدم اليوم"></div>
+  <div id="grid" class="grid" style="display:none"></div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  قسم مباريات الغد (Tomorrow) — ميزة إضافية                   -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  مباريات الغد                                                -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <section class="wrap" id="tomorrow" aria-labelledby="tomorrow-heading">
   <div class="section-head">
     <h2 id="tomorrow-heading">مباريات الغد</h2>
@@ -683,228 +330,113 @@ footer{
     <div class="state-icon" aria-hidden="true">⚠️</div>
     <h3>تعذر تحميل مباريات الغد</h3>
   </div>
-  <div id="tomorrow-grid" class="grid" style="display:none" aria-label="مباريات الغد"></div>
+  <div id="tomorrow-grid" class="grid" style="display:none"></div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  قسم الترتيب (Standings) — جدول افتراضي لأشهر الدوريات         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  ترتيب الدوريات                                              -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <section class="wrap" id="standings" aria-labelledby="standings-heading">
-  <div class="section-head">
-    <h2 id="standings-heading">ترتيب الدوريات</h2>
-    <span class="meta">أفضل 5 فرق في أشهر الدوريات</span>
-  </div>
-  
+  <div class="section-head"><h2 id="standings-heading">ترتيب الدوريات</h2><span class="meta">أفضل 5 فرق في أشهر الدوريات</span></div>
   <div class="standings-wrap">
     <div class="standings-header">🏆 الدوري الإنجليزي الممتاز — Premier League</div>
     <table class="standings-table">
-      <thead>
-        <tr>
-          <th style="width:50px">#</th>
-          <th>الفريق</th>
-          <th>لعب</th>
-          <th>فاز</th>
-          <th>تعادل</th>
-          <th>خسر</th>
-          <th>نقاط</th>
-        </tr>
-      </thead>
+      <thead><tr><th style="width:50px">#</th><th>الفريق</th><th>لعب</th><th>فاز</th><th>تعادل</th><th>خسر</th><th>نقاط</th></tr></thead>
       <tbody>
-        <tr>
-          <td><div class="standings-rank top3">1</div></td>
-          <td><div class="standings-team"><span>⚪🔴</span> آرسنال</div></td>
-          <td>38</td><td>28</td><td>5</td><td>5</td><td style="font-weight:900;color:var(--brand)">89</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank top3">2</div></td>
-          <td><div class="standings-team"><span>🔵</span> مانشستر سيتي</div></td>
-          <td>38</td><td>26</td><td>7</td><td>5</td><td style="font-weight:900;color:var(--brand)">85</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank top3">3</div></td>
-          <td><div class="standings-team"><span>🔴</span> ليفربول</div></td>
-          <td>38</td><td>24</td><td>8</td><td>6</td><td style="font-weight:900;color:var(--brand)">80</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank">4</div></td>
-          <td><div class="standings-team"><span>⚪</span> توتنهام</div></td>
-          <td>38</td><td>20</td><td>6</td><td>12</td><td>66</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank">5</div></td>
-          <td><div class="standings-team"><span>🔴⚫</span> مانشستر يونايتد</div></td>
-          <td>38</td><td>18</td><td>6</td><td>14</td><td>60</td>
-        </tr>
+        <tr><td><div class="standings-rank top3">1</div></td><td><div class="standings-team"><span>⚪🔴</span> آرسنال</div></td><td>38</td><td>28</td><td>5</td><td>5</td><td style="font-weight:900;color:var(--brand)">89</td></tr>
+        <tr><td><div class="standings-rank top3">2</div></td><td><div class="standings-team"><span>🔵</span> مانشستر سيتي</div></td><td>38</td><td>26</td><td>7</td><td>5</td><td style="font-weight:900;color:var(--brand)">85</td></tr>
+        <tr><td><div class="standings-rank top3">3</div></td><td><div class="standings-team"><span>🔴</span> ليفربول</div></td><td>38</td><td>24</td><td>8</td><td>6</td><td style="font-weight:900;color:var(--brand)">80</td></tr>
+        <tr><td><div class="standings-rank">4</div></td><td><div class="standings-team"><span>⚪</span> توتنهام</div></td><td>38</td><td>20</td><td>6</td><td>12</td><td>66</td></tr>
+        <tr><td><div class="standings-rank">5</div></td><td><div class="standings-team"><span>🔴⚫</span> مانشستر يونايتد</div></td><td>38</td><td>18</td><td>6</td><td>14</td><td>60</td></tr>
       </tbody>
     </table>
   </div>
-
   <div class="standings-wrap">
     <div class="standings-header" style="background:linear-gradient(135deg,#f59e0b,#d97706)">🇸🇦 الدوري السعودي للمحترفين — Roshn League</div>
     <table class="standings-table">
-      <thead>
-        <tr>
-          <th style="width:50px">#</th>
-          <th>الفريق</th>
-          <th>لعب</th>
-          <th>فاز</th>
-          <th>تعادل</th>
-          <th>خسر</th>
-          <th>نقاط</th>
-        </tr>
-      </thead>
+      <thead><tr><th style="width:50px">#</th><th>الفريق</th><th>لعب</th><th>فاز</th><th>تعادل</th><th>خسر</th><th>نقاط</th></tr></thead>
       <tbody>
-        <tr>
-          <td><div class="standings-rank top3">1</div></td>
-          <td><div class="standings-team"><span>🟡🔵</span> النصر</div></td>
-          <td>34</td><td>26</td><td>4</td><td>4</td><td style="font-weight:900;color:var(--accent)">82</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank top3">2</div></td>
-          <td><div class="standings-team"><span>🟡⚫</span> الاتحاد</div></td>
-          <td>34</td><td>24</td><td>5</td><td>5</td><td style="font-weight:900;color:var(--accent)">77</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank top3">3</div></td>
-          <td><div class="standings-team"><span>🟦⬜</span> الهلال</div></td>
-          <td>34</td><td>22</td><td>7</td><td>5</td><td style="font-weight:900;color:var(--accent)">73</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank">4</div></td>
-          <td><div class="standings-team"><span>🟧⬛</span> الشباب</div></td>
-          <td>34</td><td>19</td><td>6</td><td>9</td><td>63</td>
-        </tr>
-        <tr>
-          <td><div class="standings-rank">5</div></td>
-          <td><div class="standings-team"><span>⬜🟦</span> الأهلي</div></td>
-          <td>34</td><td>17</td><td>8</td><td>9</td><td>59</td>
-        </tr>
+        <tr><td><div class="standings-rank top3">1</div></td><td><div class="standings-team"><span>🟡🔵</span> النصر</div></td><td>34</td><td>26</td><td>4</td><td>4</td><td style="font-weight:900;color:var(--accent)">82</td></tr>
+        <tr><td><div class="standings-rank top3">2</div></td><td><div class="standings-team"><span>🟡⚫</span> الاتحاد</div></td><td>34</td><td>24</td><td>5</td><td>5</td><td style="font-weight:900;color:var(--accent)">77</td></tr>
+        <tr><td><div class="standings-rank top3">3</div></td><td><div class="standings-team"><span>🟦⬜</span> الهلال</div></td><td>34</td><td>22</td><td>7</td><td>5</td><td style="font-weight:900;color:var(--accent)">73</td></tr>
+        <tr><td><div class="standings-rank">4</div></td><td><div class="standings-team"><span>🟧⬛</span> الشباب</div></td><td>34</td><td>19</td><td>6</td><td>9</td><td>63</td></tr>
+        <tr><td><div class="standings-rank">5</div></td><td><div class="standings-team"><span>⬜🟦</span> الأهلي</div></td><td>34</td><td>17</td><td>8</td><td>9</td><td>59</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  خطوات الاستخدام (How it works)                               -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  خطوات الاستخدام                                             -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <div class="wrap">
-  <div class="section-head">
-    <h2>كيف تستخدم الموقع؟</h2>
-  </div>
+  <div class="section-head"><h2>كيف تستخدم الموقع؟</h2></div>
   <div class="steps">
-    <div class="step">
-      <span class="step-bg-num">01</span>
-      <div class="step-num">1</div>
-      <h3>اختر المباراة</h3>
-      <p>تصفح مباريات اليوم أو الغد واختر المباراة التي تريد متابعتها من قائمة المباريات المباشرة.</p>
-    </div>
-    <div class="step">
-      <span class="step-bg-num">02</span>
-      <div class="step-num">2</div>
-      <h3>اضغط على البطاقة</h3>
-      <p>انقر على بطاقة المباراة لتنتقل مباشرة إلى صفحة البث المباشر بجودة عالية وبدون تقطيع.</p>
-    </div>
-    <div class="step">
-      <span class="step-bg-num">03</span>
-      <div class="step-num">3</div>
-      <h3>استمتع بالمباراة</h3>
-      <p>شاهد المباراة بثبات تام. يمكنك العودة في أي وقت لمعرفة نتائج المباريات الأخرى.</p>
-    </div>
-    <div class="step">
-      <span class="step-bg-num">04</span>
-      <div class="step-num">4</div>
-      <h3>شارك مع الأصدقاء</h3>
-      <p>أرسل رابط الموقع لأصدقائك وشجع فريقك المفضل معاً في نفس اللحظة.</p>
-    </div>
+    <div class="step"><span class="step-bg-num">01</span><div class="step-num">1</div><h3>اختر المباراة</h3><p>تصفح مباريات اليوم أو الغد واختر المباراة التي تريد متابعتها.</p></div>
+    <div class="step"><span class="step-bg-num">02</span><div class="step-num">2</div><h3>اضغط على البطاقة</h3><p>انقر على بطاقة المباراة لتنتقل إلى صفحة البث المباشر.</p></div>
+    <div class="step"><span class="step-bg-num">03</span><div class="step-num">3</div><h3>استمتع بالمباراة</h3><p>شاهد المباراة بثبات تام. يمكنك العودة في أي وقت لمعرفة النتائج.</p></div>
+    <div class="step"><span class="step-bg-num">04</span><div class="step-num">4</div><h3>شارك مع الأصدقاء</h3><p>أرسل رابط الموقع لأصدقائك وشجع فريقك المفضل معاً.</p></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  الأسئلة الشائعة (FAQ)                                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  الأسئلة الشائعة                                             -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <section class="wrap" id="faq" aria-labelledby="faq-heading">
-  <div class="section-head">
-    <h2 id="faq-heading">الأسئلة الشائعة</h2>
-  </div>
+  <div class="section-head"><h2 id="faq-heading">الأسئلة الشائعة</h2></div>
   <div class="faq-wrap">
-    <details class="faq-item">
-      <summary>هل الموقع مجاني بالكامل؟</summary>
-      <p>نعم، أيوب كوووره مجاني 100% — لا يوجد اشتراك، لا تسجيل، ولا دفع مطلوب. كل المباريات متاحة للجميع.</p>
-    </details>
-    <details class="faq-item">
-      <summary>ما هي الدوريات المتاحة على الموقع؟</summary>
-      <p>نغطي الدوري السعودي، الدوري الإنجليزي، الدوري الإسباني، الدوري الإيطالي، الدوري الألماني، دوري أبطال أوروبا، الدوري الفرنسي، كأس العالم 2026 وأكثر من 50 مسابقة أخرى.</p>
-    </details>
-    <details class="faq-item">
-      <summary>هل أحتاج إلى تسجيل لاستخدام الموقع؟</summary>
-      <p>لا، لا يوجد تسجيل أو حساب مطلوب. فقط زُر الموقع واضغط على أي مباراة لمشاهدتها فوراً.</p>
-    </details>
-    <details class="faq-item">
-      <summary>لماذا لا تظهر بعض المباريات؟</summary>
-      <p>قد تكون المباراة لم تبدأ بعد، أو قد يكون هناك تأخير مؤقت في تحديث البيانات من المصدر. جرّب تحديث الصفحة بعد بضع دقائق.</p>
-    </details>
-    <details class="faq-item">
-      <summary>هل الموقع يعمل على الهاتف؟</summary>
-      <p>نعم، الموقع متجاوب بالكامل ويعمل على الهاتف، التابلت، والكمبيوتر بدون الحاجة لتطبيق.</p>
-    </details>
+    <details class="faq-item"><summary>هل الموقع مجاني بالكامل؟</summary><p>نعم، أيوب كوووره مجاني 100% — لا يوجد اشتراك، لا تسجيل، ولا دفع مطلوب.</p></details>
+    <details class="faq-item"><summary>ما هي الدوريات المتاحة؟</summary><p>نغطي الدوري السعودي، الإنجليزي، الإسباني، الإيطالي، الألماني، دوري أبطال أوروبا، كأس العالم 2026 وأكثر من 50 مسابقة.</p></details>
+    <details class="faq-item"><summary>هل أحتاج إلى تسجيل؟</summary><p>لا، لا يوجد تسجيل أو حساب مطلوب. فقط زُر الموقع واضغط على أي مباراة.</p></details>
+    <details class="faq-item"><summary>لماذا لا تظهر بعض المباريات؟</summary><p>قد تكون المباراة لم تبدأ بعد، أو قد يكون هناك تأخير مؤقت في تحديث البيانات.</p></details>
+    <details class="faq-item"><summary>هل الموقع يعمل على الهاتف؟</summary><p>نعم، الموقع متجاوب بالكامل ويعمل على الهاتف، التابلت، والكمبيوتر.</p></details>
   </div>
 </section>
 
 </main>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  تذييل الصفحة (Footer)                                        -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  Footer                                                      -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
-    <div class="foot-brand">
-      <span style="width:36px;height:36px;background:var(--grad);border-radius:10px;display:inline-grid;place-items:center;color:#fff;font-weight:900;font-size:18px" aria-hidden="true">⚽</span>
-      أيوب كوووره
-    </div>
+    <div class="foot-brand"><span style="width:36px;height:36px;background:var(--grad);border-radius:10px;display:inline-grid;place-items:center;color:#fff;font-weight:900;font-size:18px">⚽</span> أيوب كوووره</div>
     <p class="foot-desc">أيوب كوووره — وجهتك الأولى لمتابعة كرة القدم. بث مباشر، نتائج لحظية، ترتيب الفرق، وجميع المسابقات الكبرى مجاناً.</p>
-    <nav class="foot-leagues" aria-label="الدوريات المدعومة">
-      <span class="foot-league">الدوري السعودي</span>
-      <span class="foot-league">دوري أبطال أوروبا</span>
-      <span class="foot-league">الدوري الإنجليزي</span>
-      <span class="foot-league">الدوري الإسباني</span>
-      <span class="foot-league">الدوري الإيطالي</span>
-      <span class="foot-league">الدوري الألماني</span>
-      <span class="foot-league">الدوري الفرنسي</span>
-      <span class="foot-league">كأس العالم 2026</span>
-      <span class="foot-league">الدوري المصري</span>
+    <nav class="foot-leagues">
+      <span class="foot-league">الدوري السعودي</span><span class="foot-league">دوري أبطال أوروبا</span><span class="foot-league">الدوري الإنجليزي</span>
+      <span class="foot-league">الدوري الإسباني</span><span class="foot-league">الدوري الإيطالي</span><span class="foot-league">الدوري الألماني</span>
+      <span class="foot-league">الدوري الفرنسي</span><span class="foot-league">كأس العالم 2026</span><span class="foot-league">الدوري المصري</span>
       <span class="foot-league">دوري أبطال آسيا</span>
     </nav>
     <div class="foot-links">
-      <a href="#live">مباريات اليوم</a>
-      <a href="#tomorrow">مباريات الغد</a>
-      <a href="#standings">الترتيب</a>
-      <a href="#faq">الأسئلة الشائعة</a>
+      <a href="#live">مباريات اليوم</a><a href="#tomorrow">مباريات الغد</a><a href="#standings">الترتيب</a><a href="#faq">الأسئلة الشائعة</a>
     </div>
     <p class="foot-copy">© 2026 أيوب كوووره. جميع الحقوق محفوظة. بث مباشر مجاني لكرة القدم.</p>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--  الجافاسكربت (JavaScript) — منطق الموقع وربط الـ API        -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<!--  JavaScript                                                  -->
+<!-- ════════════════════════════════════════════════════════════ -->
 <script>
 (function(){
 'use strict';
 
-/* ─────────────────────────────────────────────────────────────── */
-/*  الروابط المأخوذة من الكود الأصلي (HesGoal) — لا تُغيّرها      */
-/* ─────────────────────────────────────────────────────────────── */
-var API='https://ws.kora-api.space/';                    // رابط API المباريات
-var TIMG='https://cdn.kora-api.space/uploads/team/';      // صور شعارات الفرق
-var LIMG='https://cdn.kora-api.space/uploads/league/';   // صور شعارات الدوريات
-var STREAM_URL='https://xyzhes-goal-eu.smartagro.mov/';  // رابط بث المباريات
-var STREAM_LANG='ar';                                     // لغة البث (عربي)
-
-/* ─── إعدادات الموقع ─────────────────────────────────────────── */
+/* ── الروابط المأخوذة من الكود الأصلي ───────────────────────── */
+var API='https://ws.kora-api.space/';
+var TIMG='https://cdn.kora-api.space/uploads/team/';
+var LIMG='https://cdn.kora-api.space/uploads/league/';
+var STREAM_URL='https://xyzhes-goal-eu.smartagro.mov/';
+var STREAM_LANG='ar';
 var BRAND='أيوب كوووره';
+
+/* ── تعديل مهم: رابط البث يذهب لصفحة watch.html بدلاً من      */
+/*    الذهاب مباشرة للموقع الخارجي (لمنع الإعلانات المنبثقة)     */
+/* ────────────────────────────────────────────────────────────── */
+var WATCH_PAGE='watch.html';   // ← صفحة المشاهدة الداخلية
+
 var FALLBACK="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect fill='%23f1f5f9' width='52' height='52' rx='8'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-size='26'%3E⚽%3C/text%3E%3C/svg%3E";
 
-/* ─── دوال مساعدة ────────────────────────────────────────────── */
 function pad(n){return String(n).padStart(2,'0')}
 function today(){return new Date().toISOString().split('T')[0]}
 function tomorrow(){
@@ -917,7 +449,6 @@ function ts(){
 }
 function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
 
-/* ─── تحديد حالة المباراة ────────────────────────────────────── */
 function statusInfo(s){
   s=parseInt(s);
   if(s===1)return{label:'<span class="dot" aria-hidden="true"></span> مباشر',cls:'badge-live',live:true};
@@ -925,9 +456,7 @@ function statusInfo(s){
   return{label:'قادمة',cls:'badge-upcoming',live:false};
 }
 
-/* ─── عداد تنازلي للمباريات القادمة ──────────────────────────── */
 function countdownHTML(matchTime){
-  // matchTime بالتنسيق "HH:MM"
   var parts=(matchTime||'').split(':');
   if(parts.length!==2)return'';
   var h=parseInt(parts[0]),m=parseInt(parts[1]);
@@ -939,32 +468,29 @@ function countdownHTML(matchTime){
   return '<div class="countdown" aria-label="الوقت المتبقي">'+
     '<span class="countdown-item">'+pad(hh)+'</span><span class="countdown-sep">:</span>'+
     '<span class="countdown-item">'+pad(mm)+'</span><span class="countdown-sep">:</span>'+
-    '<span class="countdown-item">'+pad(ss)+'</span>'+
-    '</div>';
+    '<span class="countdown-item">'+pad(ss)+'</span></div>';
 }
 
-/* ─── بناء بطاقة المباراة (Card) ─────────────────────────────── */
+/* ── بناء بطاقة المباراة ────────────────────────────────────── */
 function card(m){
   var st=statusInfo(m.status);
   var live=m.status===1||m.status===3;
-  var link=STREAM_URL+'?m='+encodeURIComponent(m.id)+'&lang='+encodeURIComponent(STREAM_LANG);
+
+  /* ── التعديل الرئيسي: رابط البث يذهب لـ watch.html ───────── */
+  /*  نمرر معرف المباراة واللغة كـ query parameters               */
+  var link=WATCH_PAGE+'?id='+encodeURIComponent(m.id)+'&lang='+encodeURIComponent(STREAM_LANG);
+
   var center;
-  
   if(m.status===1||m.status===2){
-    // مباراة مباشرة أو منتهية — اعرض النتيجة
     var sc=m.score&&m.score!=='-'?esc(m.score):'0 - 0';
     center='<div class="score">'+sc+'</div>';
-    if(m.status===2){
-      center+='<div class="final-score">انتهت المباراة</div>';
-    }
+    if(m.status===2) center+='<div class="final-score">انتهت المباراة</div>';
   }else{
-    // مباراة قادمة — اعرض الوقت + عداد تنازلي
     center='<div class="kick-time">'+esc(m.time)+'</div><div class="kick-label">انطلاق المباراة</div>'+countdownHTML(m.time);
   }
-  
-  var foot=live?
-    '<div class="card-foot"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><polygon points="2,1 11,6 2,11" fill="#fff"/></svg> شاهد البث على '+BRAND+'</div>':'';
-  
+
+  var foot=live?'<div class="card-foot"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><polygon points="2,1 11,6 2,11" fill="#fff"/></svg> شاهد البث على '+BRAND+'</div>':'';
+
   var inner=
     '<div class="card-head">'+
       '<div class="league-row">'+
@@ -986,99 +512,75 @@ function card(m){
         '</div>'+
       '</div>'+
     '</div>'+foot;
-  
+
+  /* ── التعديل: نفتح في نفس الصفحة (بدل target="_blank") ───── */
   if(live){
-    return '<a href="'+link+'" class="card'+(m.status===2?' finished':'')+'" target="_blank" rel="noopener noreferrer nofollow" aria-label="شاهد '+esc(m.home_en)+' ضد '+esc(m.away_en)+' مباشر على '+BRAND+'">'+inner+'</a>';
+    return '<a href="'+link+'" class="card'+(m.status===2?' finished':'')+'" aria-label="شاهد '+esc(m.home_en)+' ضد '+esc(m.away_en)+' مباشر على '+BRAND+'">'+inner+'</a>';
   }
   return '<div class="card'+(m.status===2?' finished':'')+'" aria-label="'+esc(m.home_en)+' ضد '+esc(m.away_en)+'">'+inner+'</div>';
 }
 
-/* ─── دوال التحكم في العرض ───────────────────────────────────── */
 function show(id,d){document.getElementById(id).style.display=d||'block'}
 function hide(id){document.getElementById(id).style.display='none'}
 
-/* ─── تحديث الإحصائيات في الهيدر ─────────────────────────────── */
 function updateStats(matches){
   var live=matches.filter(function(m){return m.status===1}).length;
   document.getElementById('stat-live').textContent=live;
   document.getElementById('stat-today').textContent=matches.length;
 }
 
-/* ─── تحميل مباريات اليوم ────────────────────────────────────── */
 function loadToday(){
   var url=API+'api/matches/'+today()+'/1?t='+ts();
   fetch(url).then(function(r){if(!r.ok)throw new Error('err');return r.json()})
   .then(function(data){
     hide('loading');
-    var matches=(data.matches||[]).filter(function(m){
-      return m.category==='Soccer'||m.category==='Football';
-    });
+    var matches=(data.matches||[]).filter(function(m){return m.category==='Soccer'||m.category==='Football'});
     updateStats(matches);
     if(!matches.length){
       show('loading');
-      document.getElementById('loading').innerHTML=
-        '<div class="state-icon" aria-hidden="true">⚽</div>'+
-        '<h3>لا توجد مباريات حالياً</h3>'+
-        '<p>تابعنا قريباً — المباريات تُضاف يومياً على '+BRAND+'.</p>';
+      document.getElementById('loading').innerHTML='<div class="state-icon" aria-hidden="true">⚽</div><h3>لا توجد مباريات حالياً</h3><p>تابعنا قريباً — المباريات تُضاف يومياً على '+BRAND+'.</p>';
       return;
     }
     document.getElementById('grid').innerHTML=matches.map(card).join('');
     show('grid','grid');
-  }).catch(function(){
-    hide('loading');show('error');
-  });
+  }).catch(function(){hide('loading');show('error')});
 }
 
-/* ─── تحميل مباريات الغد ─────────────────────────────────────── */
 function loadTomorrow(){
   var url=API+'api/matches/'+tomorrow()+'/1?t='+ts();
   fetch(url).then(function(r){if(!r.ok)throw new Error('err');return r.json()})
   .then(function(data){
     hide('tomorrow-loading');
-    var matches=(data.matches||[]).filter(function(m){
-      return m.category==='Soccer'||m.category==='Football';
-    });
+    var matches=(data.matches||[]).filter(function(m){return m.category==='Soccer'||m.category==='Football'});
     if(!matches.length){
       show('tomorrow-loading');
-      document.getElementById('tomorrow-loading').innerHTML=
-        '<div class="state-icon" aria-hidden="true">📅</div>'+
-        '<h3>لا توجد مباريات غداً</h3>'+
-        '<p>سيتم تحديث الجدول فور توفر المباريات.</p>';
+      document.getElementById('tomorrow-loading').innerHTML='<div class="state-icon" aria-hidden="true">📅</div><h3>لا توجد مباريات غداً</h3><p>سيتم تحديث الجدول فور توفر المباريات.</p>';
       return;
     }
     document.getElementById('tomorrow-grid').innerHTML=matches.map(card).join('');
     show('tomorrow-grid','grid');
-  }).catch(function(){
-    hide('tomorrow-loading');show('tomorrow-error');
-  });
+  }).catch(function(){hide('tomorrow-loading');show('tomorrow-error')});
 }
 
-/* ─── تحديث العدادات التنازلية كل ثانية ───────────────────────── */
 function updateCountdowns(){
   var els=document.querySelectorAll('.countdown');
   els.forEach(function(el){
     var items=el.querySelectorAll('.countdown-item');
     if(items.length<3)return;
-    var h=parseInt(items[0].textContent);
-    var m=parseInt(items[1].textContent);
-    var s=parseInt(items[2].textContent);
+    var h=parseInt(items[0].textContent),m=parseInt(items[1].textContent),s=parseInt(items[2].textContent);
     var total=h*3600+m*60+s-1;
     if(total<0)total=0;
-    var hh=Math.floor(total/3600), mm=Math.floor((total%3600)/60), ss=total%60;
-    items[0].textContent=pad(hh);
-    items[1].textContent=pad(mm);
-    items[2].textContent=pad(ss);
+    var hh=Math.floor(total/3600),mm=Math.floor((total%3600)/60),ss=total%60;
+    items[0].textContent=pad(hh);items[1].textContent=pad(mm);items[2].textContent=pad(ss);
   });
 }
 
-/* ─── عرض تاريخ اليوم في العنوان ─────────────────────────────── */
 function setTodayDate(){
   var d=new Date();
   var options={weekday:'long',year:'numeric',month:'long',day:'numeric'};
   document.getElementById('todayDate').textContent=d.toLocaleDateString('ar-SA',options);
 }
 
-/* ─── الوضع المظلم/النهاري (Dark Mode Toggle) ─────────────────── */
 function initTheme(){
   var btn=document.getElementById('themeBtn');
   var saved=localStorage.getItem('ayoub-kooora-theme');
@@ -1091,23 +593,15 @@ function initTheme(){
   });
 }
 
-/* ─── تشغيل الموقع عند تحميل الصفحة ───────────────────────────── */
 if(document.readyState==='loading'){
   document.addEventListener('DOMContentLoaded',function(){
-    setTodayDate();
-    loadToday();
-    loadTomorrow();
-    initTheme();
+    setTodayDate();loadToday();loadTomorrow();initTheme();
     setInterval(updateCountdowns,1000);
   });
 }else{
-  setTodayDate();
-  loadToday();
-  loadTomorrow();
-  initTheme();
+  setTodayDate();loadToday();loadTomorrow();initTheme();
   setInterval(updateCountdowns,1000);
 }
-
 })();
 </script>
 </body>
